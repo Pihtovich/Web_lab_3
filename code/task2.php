@@ -1,9 +1,11 @@
 <?php
 session_start();
-if (isset($_POST['submit']))
+
+if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
-    $_SESSION['user'] = ['surname' => $_POST['surname'], 'name' => $_POST['name'], 'age' => $_POST['age']];
-    header('Location: output.php');
+    $userData = ['name' => $_POST['name'], 'age' => $_POST['age'], 'salary' => $_POST['salary'], 'education' => $_POST['salary']];
+    $_SESSION['userData'] = $userData;
+    header("Location: output.php");
 }
 ?>
 <!DOCTYPE html>
@@ -12,11 +14,17 @@ if (isset($_POST['submit']))
     <title>Ввод данных</title>
 </head>
 <body>
+<h2>Введите ваши данные:</h2>
 <form method="post">
-    Фамилия: <input type="text" name="surname"><br>
-    Имя: <input type="text" name="name"><br>
-    Возраст: <input type="text" name="age"><br>
-    <button type="submit" name="submit">Сохранить</button>
+    label for="name">Имя:</label>
+    <input type="text" id="name" name="name"><br><br>
+    <label for="age">Возраст:</label>
+    <input type="text" id="age" name="age"><br><br>
+    <label for="salary">Зарплата:</label>
+    <input type="text" id="salary" name="salary"><br><br>
+    <label for="education">Образование:</label>
+    <input type="text" id="education" name="education"><br><br>
+    <input type="submit" value="Сохранить">
 </form>
 </body>
 </html>
