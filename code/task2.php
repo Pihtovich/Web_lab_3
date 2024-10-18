@@ -1,22 +1,22 @@
+<?php
+session_start();
+if (isset($_POST['submit']))
+{
+    $_SESSION['user'] = ['surname' => $_POST['surname'], 'name' => $_POST['name'], 'age' => $_POST['age']];
+    header('Location: output.php');
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Подсчет слов и символов</title>
+    <title>Ввод данных</title>
 </head>
 <body>
 <form method="post">
-    <textarea name="text"></textarea>
-    <br>
-    <input type="submit" name="submit" value="Подсчитать">
+    Фамилия: <input type="text" name="surname"><br>
+    Имя: <input type="text" name="name"><br>
+    Возраст: <input type="text" name="age"><br>
+    <button type="submit" name="submit">Сохранить</button>
 </form>
-<?php
-if(isset($_POST['submit']))
-{
-    $text = $_POST['text'];
-    $wordCount = str_word_count($text);
-    $charCount = strlen($text);
-    echo "<p>Количество слов: $wordCount</p>";
-    echo "<p>Количество символов: $charCount</p>";
-}
-?>
 </body>
+</html>
